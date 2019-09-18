@@ -4,7 +4,7 @@ import { of, merge, EMPTY, fromEvent, timer } from "rxjs";
 import { map, mergeMap, catchError, tap, startWith, switchMap, takeUntil, groupBy } from 'rxjs/operators';
 
 import { findHub, createHub } from "./hub";
-import { createSignalRHub, signalrHubUnstarted, signalrHubFailedToStart, signalrConnected, signalrDisconnected, signalrError, startSignalRHub, signalrConnecting, signalrReconnecting } from "./actions";
+import { createSignalRHub, signalrHubUnstarted, signalrHubFailedToStart, signalrConnected, signalrDisconnected, signalrError, startSignalRHub, signalrConnecting, signalrReconnecting, stopSignalRHub } from "./actions";
 import { ofHub, exhaustMapHubToAction } from "./operators";
 import { Action } from "@ngrx/store";
 
@@ -72,6 +72,8 @@ export class SignalREffects {
         )
     );
 
+
+
     // start hub
     startHub$ = createEffect(() =>
         this.actions$.pipe(
@@ -85,6 +87,18 @@ export class SignalREffects {
         ),
         { dispatch: false }
     );
+
+    stopHub$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(stopSignalRHub),
+            tap( action => {
+                const hub = findHub(action);
+                if (hub) {
+                    hub.stop(action.async, action.notifyServer);
+                }
+            })
+        ), {dispatch: false}
+    )
 
     constructor(private actions$: Actions) { }
 }

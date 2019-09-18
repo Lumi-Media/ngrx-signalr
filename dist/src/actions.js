@@ -4,6 +4,7 @@ export const createSignalRHub = createAction('@ngrx/signalr/createHub', props())
 export const SIGNALR_HUB_UNSTARTED = '@ngrx/signalr/hubUnstarted';
 export const signalrHubUnstarted = createAction(SIGNALR_HUB_UNSTARTED, props());
 export const startSignalRHub = createAction('@ngrx/signalr/startHub', props());
+export const stopSignalRHub = createAction('@ngrx/signalr/stopHub', props());
 export const SIGNALR_HUB_FAILED_TO_START = '@ngrx/signalr/hubFailedToStart';
 export const signalrHubFailedToStart = createAction(SIGNALR_HUB_FAILED_TO_START, props());
 export const SIGNALR_CONNECTING = '@ngrx/signalr/connecting';
