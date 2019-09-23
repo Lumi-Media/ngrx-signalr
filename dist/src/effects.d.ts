@@ -34,6 +34,12 @@ export declare class SignalREffects {
         options?: SignalR.ConnectionOptions | undefined;
         beforeConnectionStart?: ((connection: SignalR.Hub.Connection | undefined) => void) | undefined;
     } & import("@ngrx/store/src/models").TypedAction<"@ngrx/signalr/startHub">>;
+    stopHub$: import("rxjs").Observable<{
+        hubName: string;
+        url?: string | undefined;
+        async?: boolean | undefined;
+        notifyServer?: boolean | undefined;
+    } & import("@ngrx/store/src/models").TypedAction<"@ngrx/signalr/stopHub">>;
     constructor(actions$: Actions);
 }
 export declare const createReconnectEffect: (actions$: Actions<Action>, intervalTimespan: number) => import("rxjs").Observable<({

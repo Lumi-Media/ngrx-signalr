@@ -25,6 +25,17 @@ export declare const startSignalRHub: import("@ngrx/store").ActionCreator<"@ngrx
     options?: SignalR.ConnectionOptions | undefined;
     beforeConnectionStart?: ((connection: SignalR.Hub.Connection | undefined) => void) | undefined;
 } & import("@ngrx/store/src/models").TypedAction<"@ngrx/signalr/startHub">>;
+export declare const stopSignalRHub: import("@ngrx/store").ActionCreator<"@ngrx/signalr/stopHub", (props: {
+    hubName: string;
+    url?: string | undefined;
+    async?: boolean | undefined;
+    notifyServer?: boolean | undefined;
+}) => {
+    hubName: string;
+    url?: string | undefined;
+    async?: boolean | undefined;
+    notifyServer?: boolean | undefined;
+} & import("@ngrx/store/src/models").TypedAction<"@ngrx/signalr/stopHub">>;
 export declare const SIGNALR_HUB_FAILED_TO_START = "@ngrx/signalr/hubFailedToStart";
 export declare const signalrHubFailedToStart: import("@ngrx/store").ActionCreator<"@ngrx/signalr/hubFailedToStart", (props: {
     hubName: string;
