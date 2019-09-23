@@ -158,20 +158,23 @@ export class SignalRHub implements ISignalRHub {
         }
 
 
-        const invocationPromise = new Promise((resolve, reject) => {
+        const invocation$ = new Observable((subscriber) => {
             if(this._proxy) {
                 this._proxy.invoke(method, ...args)
-                .done(result => 
-                    resolve(result)
-                ).fail(error =>
-                    reject(error)
-                )
+                .done(result => {
+                    subscriber.next(result)
+                    subscriber.complete();
+                }).fail(error => {
+                    subscriber.error(error);
+                }).progress((progress) => {
+                    subscriber.next(progress);
+                })
             } else {
-                throw new Error('The connection has not been started yet. Please start the connection by invoking the start method before attempting to send a message to the server.')
+                subscriber.error(new Error('The connection has not been started yet. Please start the connection by invoking the start method before attempting to send a message to the server.'));
             }
         })
 
-        return from(invocationPromise);
+        return invocation$;
     }
 
     hasSubscriptions(): boolean {
