@@ -1,17 +1,25 @@
 {
-  "name": "ngrx-signalr",
-  "version": "8.0.16",
-  "description": "A library to handle realtime SignalR events using angular and rxjs",
+  "name": "@lumico/ngrx-signalr",
+  "version": "8.3.2",
+  "description": "A library fork to handle realtime SignalR events using angular and rxjs",
   "main": "dist/index.js",
+  "files": [
+    "dis/**/*"
+  ],
   "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "release": "npm publish --access public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Odonno/ngrx-signalr.git"
   },
-  "author": "Odonno",
+  "authors": [
+    "Odonno",
+    "Lumi Media"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Odonno/ngrx-signalr/issues"
@@ -24,7 +32,7 @@
   "dependencies": {
     "@types/signalr": "^2.2.35",
     "jquery": "^3.4.1",
-    "signalr": "^2.4.0"
+    "signalr": "2.3.0"
   },
   "peerDependencies": {
     "@angular/common": ">=8.0.0",
