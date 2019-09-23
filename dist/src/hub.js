@@ -105,7 +105,7 @@ export class SignalRHub {
         if (!this._proxy) {
             this._proxy = this._connection.createHubProxy(this.hubName);
         }
-        return from(this._proxy.invoke(method, ...args));
+        return from(Promise.resolve(this._proxy.invoke(method, ...args)));
     }
     hasSubscriptions() {
         for (let key in this._subjects) {
