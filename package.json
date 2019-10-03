@@ -32,7 +32,7 @@
   "dependencies": {
     "@types/signalr": "^2.2.35",
     "jquery": "^3.4.1",
-    "signalr": "2.3.0"
+    "signalr": "^2.4.0"
   },
   "peerDependencies": {
     "@angular/common": ">=8.0.0",
